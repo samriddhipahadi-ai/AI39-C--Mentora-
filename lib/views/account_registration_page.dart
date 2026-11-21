@@ -448,7 +448,7 @@ class _AccountRegistrationPageState extends State<AccountRegistrationPage> {
 
       DropdownButtonFormField<String>(
 
-        value: value,
+        initialValue: value,
 
         decoration: const InputDecoration(),
 
