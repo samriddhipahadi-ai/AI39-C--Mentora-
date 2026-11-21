@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'views/welcome_page.dart';
-import 'views/account_registration_page.dart';
-import 'views/sign_in_page.dart';
-import 'views/forgot_password_page.dart';
+
+import 'package:mentora/views/account_registration_page.dart';
+import 'package:mentora/views/welcome_page.dart';
+import 'package:mentora/views/sign_in_page.dart';
+import 'package:mentora/views/forget_password_page.dart';
 
 void main() {
   runApp(const MentoraApp());
@@ -20,37 +21,62 @@ class MentoraApp extends StatelessWidget {
     return MaterialApp(
       title: 'Mentora',
       debugShowCheckedModeBanner: false,
+
       theme: ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: pale,
-        colorScheme: ColorScheme.fromSeed(seedColor: navy),
+
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: navy,
+        ),
+
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: Colors.white,
+
           contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16, vertical: 17,
+            horizontal: 16,
+            vertical: 17,
           ),
+
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(13),
-            borderSide: const BorderSide(color: Color(0xFFDCE4EC)),
+            borderSide: const BorderSide(
+              color: Color(0xFFDCE4EC),
+            ),
           ),
+
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(13),
-            borderSide: const BorderSide(color: Color(0xFFDCE4EC)),
+            borderSide: const BorderSide(
+              color: Color(0xFFDCE4EC),
+            ),
           ),
+
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(13),
-            borderSide: const BorderSide(color: blue, width: 1.6),
+            borderSide: const BorderSide(
+              color: blue,
+              width: 1.6,
+            ),
           ),
         ),
       ),
+
       initialRoute: '/',
+
       routes: {
-        '/': (_) => const WelcomePage(),
-        '/create-account': (_) => const AccountRegistrationPage(),
-        '/sign-in': (_) => const SignInPage(),
-        '/forgot-password': (_) => const ForgotPasswordPage(),
+        '/': (context) => const WelcomePage(),
+
+        '/create-account': (context) =>
+        const AccountRegistrationPage(),
+
+        '/sign-in': (context) => const SignInPage(),
+
+        '/forgot-password': (context) =>
+        const ForgotPasswordPage(),
       },
     );
   }
 }
+
