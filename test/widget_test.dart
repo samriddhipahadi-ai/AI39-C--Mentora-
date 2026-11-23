@@ -1,22 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:mentora/main.dart';
+import 'package:mentora/theme/app_text_styles.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  // Tests have no internet, so tell AppText not to download Google Fonts.
+  setUp(() => AppText.useGoogleFonts = false);
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('App starts', (tester) async {
+    await tester.pumpWidget(const MentoraApp());
+    expect(find.byType(MentoraApp), findsOneWidget);
   });
 }
