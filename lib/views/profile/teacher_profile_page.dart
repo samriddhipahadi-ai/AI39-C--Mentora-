@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// PLACEHOLDER. Samriddhi replaces this whole file on Day 2.
 class TeacherProfilePage extends StatelessWidget {
   const TeacherProfilePage({super.key});
 
