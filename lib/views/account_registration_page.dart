@@ -1,3 +1,6 @@
+import '../models/user_profile.dart';
+import '../services/profile_store.dart';
+
 import 'package:flutter/material.dart';
 
 import '../controllers/auth_controller.dart';
@@ -122,15 +125,34 @@ class _AccountRegistrationPageState extends State<AccountRegistrationPage> {
 
     }
 
-    final ok = await _controller.createAccount(
-
+    await _controller.createAccount(
         email: _email.text.trim(), password: _password.text, role: _role.label);
-
     if (!mounted) return;
+
+    // Sprint 2: keep what the person typed so the dashboard can show it.
+    // TODO(backend): once real accounts exist, stop here when createAccount fails.
+    ProfileStore.instance.signIn(UserProfile(
+      role: _role,
+      name: _name.text.trim(),
+      email: _email.text.trim(),
+      phone: _phone.text.trim(),
+      location: _role == AccountRole.teacher ? _location.text.trim() : '',
+      about: _role == AccountRole.teacher ? _bio.text.trim() : '',
+      educationSystem: _system,
+      classLevel: _classLevel,
+      stream: _stream,
+      subjects: _selected.toList(),
+      qualification: _qualification.text.trim(),
+      experienceYears: _experience.text.trim(),
+      availability: _availability.text.trim(),
+    ));
+
+    // Open the right dashboard and remove the old pages from the back stack.
+    Navigator.pushNamedAndRemoveUntil(context, '/dashboard', (route) => false);
 
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
 
-        content: Text(ok
+        content: Text(_role == AccountRole.student
 
             ? 'Demo form complete. Connect authentication to create a real account.'
 

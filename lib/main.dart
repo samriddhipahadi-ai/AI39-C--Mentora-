@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:mentora/views/dashboard/dashboard_shell.dart';
 import 'package:mentora/views/account_registration_page.dart';
 import 'package:mentora/views/welcome_page.dart';
 import 'package:mentora/views/sign_in_page.dart';
@@ -25,6 +26,7 @@ class MentoraApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: pale,
+        // DM Sans for all body text (turned off in tests, they have no internet).
 
         colorScheme: ColorScheme.fromSeed(
           seedColor: navy,
@@ -75,8 +77,9 @@ class MentoraApp extends StatelessWidget {
 
         '/forgot-password': (context) =>
         const ForgotPasswordPage(),
+
+        '/dashboard': (context) => const DashboardShell(),
       },
     );
   }
 }
-
