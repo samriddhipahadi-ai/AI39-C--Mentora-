@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 
-/// PLACEHOLDER. Samriddhi replaces this whole file on Day 2.
-class TeacherProfilePage extends StatelessWidget {
-  const TeacherProfilePage({super.key});
+import 'section_card.dart';
+
+
+class AccountSessionCard extends StatelessWidget {
+  const AccountSessionCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Teacher profile: Samriddhi builds this'));
+    return SectionCard(
+      title: 'Account session',
+      subtitle: 'Sign out securely from this device.',
+      child: SizedBox(
+        width: double.infinity,
+        height: 48,
+        child: OutlinedButton(
+          onPressed: () {},
+          child: const Text('Log out'),
+        ),
+      ),
+    );
   }
 }
