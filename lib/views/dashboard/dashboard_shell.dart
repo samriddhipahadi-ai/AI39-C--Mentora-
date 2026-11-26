@@ -6,7 +6,13 @@ import '../../theme/app_colors.dart';
 import '../profile/student_profile_page.dart';
 import '../profile/teacher_profile_page.dart';
 import '../sign_in_page.dart';
-import 'tab_placeholder.dart';
+import 'discover_page.dart';
+import 'messages_page.dart';
+import 'my_classes_page.dart';
+import 'student_home_page.dart';
+import 'teacher_classes_page.dart';
+import 'teacher_create_class_page.dart';
+import 'teacher_home_page.dart';
 
 /// One tab of the bottom navigation bar.
 class _Tab {
@@ -53,18 +59,18 @@ class _DashboardShellState extends State<DashboardShell> {
   List<Widget> _pages(UserProfile profile) {
     if (profile.isTeacher) {
       return [
-        const TabPlaceholder('Teacher home'),
-        const TabPlaceholder('Classes & notes'),
-        const TabPlaceholder('Create class'),
-        const TabPlaceholder('Messages'),
+        TeacherHomePage(onGoTo: _goTo),
+        TeacherClassesPage(onNewClass: () => _goTo(2)),
+        const TeacherCreateClassPage(),
+        const MessagesPage(isTeacher: true),
         const TeacherProfilePage(),
       ];
     }
     return [
-      const TabPlaceholder('Student home'),
-      const TabPlaceholder('Discover'),
-      const TabPlaceholder('My classes'),
-      const TabPlaceholder('Messages'),
+      StudentHomePage(onGoTo: _goTo),
+      const DiscoverPage(),
+      MyClassesPage(onExplore: () => _goTo(1)),
+      const MessagesPage(isTeacher: false),
       const StudentProfilePage(),
     ];
   }
