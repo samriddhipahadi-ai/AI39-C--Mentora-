@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import '../../models/user_profile.dart';
 import 'profile_avatar.dart';
 
-/// PLACEHOLDER. Kritima replaces this whole file on Day 4 (story 2.3).
-/// Keep the constructor exactly like this so the profile pages keep working.
+// PLACEHOLDER. Kritima replaces this whole file on Day 4 (story 2.3).
+// Keep the constructor exactly like this so the profile pages keep working.
 class ProfilePhotoPicker extends StatelessWidget {
   const ProfilePhotoPicker({
     super.key,
