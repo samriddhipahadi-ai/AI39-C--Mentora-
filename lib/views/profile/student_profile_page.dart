@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
@@ -5,6 +6,7 @@ import '../../services/profile_store.dart';
 import '../widgets/account_session_card.dart';
 import '../widgets/info_tile.dart';
 import '../widgets/profile_header_card.dart';
+import '../widgets/profile_photo_picker.dart';
 import '../widgets/section_card.dart';
 import 'student_edit_form.dart';
 
@@ -13,13 +15,21 @@ class StudentProfilePage extends StatefulWidget {
   const StudentProfilePage({super.key});
 
   @override
-  State<StudentProfilePage> createState() =>
-      _StudentProfilePageState();
+  State<StudentProfilePage> createState() => _StudentProfilePageState();
 }
 
-class _StudentProfilePageState
-    extends State<StudentProfilePage> {
+class _StudentProfilePageState extends State<StudentProfilePage> {
   bool _editing = false;
+
+  /// Saves the chosen photo straight away.
+  /// It does not wait for the Save Profile button.
+  void _onPhoto(Uint8List bytes) {
+    final current = ProfileStore.instance.current;
+
+    if (current == null) return;
+
+    ProfileStore.instance.update(current.copyWith(photoBytes: bytes));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +48,9 @@ class _StudentProfilePageState
             ProfileHeaderCard(
               profile: profile,
               subtitle: profile.studentSummary,
+              avatar: _editing
+                  ? ProfilePhotoPicker(profile: profile, onChanged: _onPhoto)
+                  : null,
               editing: _editing,
               onToggleEdit: () {
                 setState(() {
@@ -49,32 +62,18 @@ class _StudentProfilePageState
             if (_editing)
               StudentEditForm(
                 profile: profile,
-                onDone: () =>
-                    setState(() => _editing = false),
+                onDone: () => setState(() => _editing = false),
               )
             else ...[
               SectionCard(
                 title: 'Login & contact information',
-                subtitle:
-                'Add a short introduction to help your Mentora connections know you better.',
+                subtitle: 'Add a short introduction to help your Mentora connections know you better.',
                 child: Column(
                   children: [
-                    InfoTile(
-                      label: 'Name',
-                      value: profile.name,
-                    ),
-                    InfoTile(
-                      label: 'Email',
-                      value: profile.email,
-                    ),
-                    InfoTile(
-                      label: 'Phone',
-                      value: profile.phone,
-                    ),
-                    InfoTile(
-                      label: 'Location',
-                      value: profile.location,
-                    ),
+                    InfoTile(label: 'Name', value: profile.name),
+                    InfoTile(label: 'Email', value: profile.email),
+                    InfoTile(label: 'Phone', value: profile.phone),
+                    InfoTile(label: 'Location', value: profile.location),
                   ],
                 ),
               ),
@@ -83,30 +82,18 @@ class _StudentProfilePageState
                 title: 'Student profile',
                 child: Column(
                   children: [
-                    InfoTile(
-                      label: 'Class',
-                      value: profile.classLevel,
-                    ),
-                    InfoTile(
-                      label: 'School',
-                      value: profile.school,
-                    ),
+                    InfoTile(label: 'Class', value: profile.classLevel),
+                    InfoTile(label: 'School', value: profile.school),
                     InfoTile(
                       label: 'Education',
                       value: profile.educationSystem,
                     ),
-                    InfoTile(
-                      label: 'Stream',
-                      value: profile.stream,
-                    ),
+                    InfoTile(label: 'Stream', value: profile.stream),
                     InfoTile(
                       label: 'Subjects',
                       value: profile.subjects.join(', '),
                     ),
-                    InfoTile(
-                      label: 'About',
-                      value: profile.about,
-                    ),
+                    InfoTile(label: 'About', value: profile.about),
                   ],
                 ),
               ),
