@@ -1,3 +1,4 @@
+
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ void main() {
 
   testWidgets(
     'shows the first letter and camera badge when there is no photo',
-    (tester) async {
+        (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -45,6 +46,9 @@ void main() {
 
     expect(updated.photoBytes, bytes);
 
-    expect(updated.copyWith(name: 'New name').photoBytes, bytes);
+    expect(
+      updated.copyWith(name: 'New name').photoBytes,
+      bytes,
+    );
   });
 }
