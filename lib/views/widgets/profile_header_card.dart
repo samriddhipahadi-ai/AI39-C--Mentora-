@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import '../../models/user_profile.dart';
@@ -11,12 +12,14 @@ class ProfileHeaderCard extends StatelessWidget {
     required this.subtitle,
     required this.editing,
     required this.onToggleEdit,
+    this.avatar,
   });
 
   final UserProfile profile;
   final String subtitle;
   final bool editing;
   final VoidCallback onToggleEdit;
+  final Widget? avatar;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +28,11 @@ class ProfileHeaderCard extends StatelessWidget {
       subtitle: subtitle,
       child: Row(
         children: [
-          ProfileAvatar(
-            profile: profile,
-            size: 72,
-          ),
+          avatar ??
+              ProfileAvatar(
+                profile: profile,
+                size: 72,
+              ),
           const SizedBox(width: 16),
           Expanded(
             child: Text(
