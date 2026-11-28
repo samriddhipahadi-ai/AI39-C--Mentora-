@@ -16,12 +16,22 @@ class MentoraBrand extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('MENTORA', style: TextStyle(
-              color: color, fontSize: 18, fontWeight: FontWeight.w800,
-              letterSpacing: 1.1,
-            )),
-            Text('Find the right mentor. Learn your way.',
-                style: TextStyle(color: color.withOpacity(.75), fontSize: 10)),
+            Text(
+              'MENTORA',
+              style: TextStyle(
+                color: color,
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.1,
+              ),
+            ),
+            Text(
+              'Find the right mentor. Learn your way.',
+              style: TextStyle(
+                color: color.withValues(alpha: 0.75),
+                fontSize: 10,
+              ),
+            ),
           ],
         ),
       ],
