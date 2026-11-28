@@ -32,7 +32,7 @@ class InfoTile extends StatelessWidget {
           Text(label, style: AppText.small),
           const SizedBox(height: 3),
           Text(
-            value.trim().isEmpty ? 'Not added' : value,
+            value.trim().isEmpty ? 'Not provided' : value,
             style: AppText.bodyDark,
           ),
         ],
