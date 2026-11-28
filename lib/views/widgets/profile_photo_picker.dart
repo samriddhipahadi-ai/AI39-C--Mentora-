@@ -24,12 +24,10 @@ class ProfilePhotoPicker extends StatefulWidget {
   final double size;
 
   @override
-  State<ProfilePhotoPicker> createState() =>
-      _ProfilePhotoPickerState();
+  State<ProfilePhotoPicker> createState() => _ProfilePhotoPickerState();
 }
 
-class _ProfilePhotoPickerState
-    extends State<ProfilePhotoPicker> {
+class _ProfilePhotoPickerState extends State<ProfilePhotoPicker> {
   static const _maxBytes = 5 * 1024 * 1024;
   static const _allowed = ['jpg', 'jpeg', 'png'];
 
@@ -78,9 +76,7 @@ class _ProfilePhotoPickerState
 
       widget.onChanged(bytes);
     } catch (_) {
-      _message(
-        'Could not open your photos. Please try again.',
-      );
+      _message('Could not open your photos. Please try again.');
     } finally {
       if (mounted) {
         setState(() => _busy = false);
@@ -117,18 +113,18 @@ class _ProfilePhotoPickerState
                 ),
                 child: _busy
                     ? const SizedBox(
-                  width: 12,
-                  height: 12,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    color: Colors.white,
-                  ),
-                )
+                        width: 12,
+                        height: 12,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: Colors.white,
+                        ),
+                      )
                     : const Icon(
-                  Icons.camera_alt,
-                  size: 12,
-                  color: Colors.white,
-                ),
+                        Icons.camera_alt,
+                        size: 12,
+                        color: Colors.white,
+                      ),
               ),
             ),
           ],

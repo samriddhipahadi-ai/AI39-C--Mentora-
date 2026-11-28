@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class AccountSessionCard extends StatelessWidget {
@@ -23,13 +24,11 @@ class AccountSessionCard extends StatelessWidget {
               ),
               actions: [
                 TextButton(
-                  onPressed: () =>
-                      Navigator.pop(dialogContext),
+                  onPressed: () => Navigator.pop(dialogContext),
                   child: const Text('Cancel'),
                 ),
                 FilledButton(
-                  onPressed: () =>
-                      Navigator.pop(dialogContext),
+                  onPressed: () => Navigator.pop(dialogContext),
                   child: const Text('Log out'),
                 ),
               ],

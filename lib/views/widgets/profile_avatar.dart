@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import '../../models/user_profile.dart';
@@ -19,8 +20,7 @@ class ProfileAvatar extends StatelessWidget {
     return CircleAvatar(
       radius: size / 2,
       backgroundColor: const Color(0xFFE8EEF5),
-      backgroundImage:
-      photo != null ? MemoryImage(photo) : null,
+      backgroundImage: photo != null ? MemoryImage(photo) : null,
       child: photo == null
           ? Text(
         profile.initial,
