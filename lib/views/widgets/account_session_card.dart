@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../services/profile_store.dart';
+
 class AccountSessionCard extends StatelessWidget {
   const AccountSessionCard({super.key});
 
@@ -25,10 +27,13 @@ class AccountSessionCard extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(dialogContext),
-                  child: const Text('Cancel'),
+                  child: const Text('Stay signed in'),
                 ),
                 FilledButton(
-                  onPressed: () => Navigator.pop(dialogContext),
+                  onPressed: () {
+                    ProfileStore.instance.signOut();
+                    Navigator.pop(dialogContext);
+                  },
                   child: const Text('Log out'),
                 ),
               ],
