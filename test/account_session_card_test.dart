@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mentora/models/account_role.dart';
@@ -28,30 +29,37 @@ void main() {
 
   tearDown(() => ProfileStore.instance.signOut());
 
-  testWidgets('asks for confirmation and stays signed in on cancel',
-          (tester) async {
-        await _open(tester);
+  testWidgets(
+    'asks for confirmation and stays signed in on cancel',
+        (tester) async {
+      await _open(tester);
 
-        await tester.tap(find.text('Log out'));
-        await tester.pumpAndSettle();
+      await tester.tap(find.text('Log out'));
+      await tester.pumpAndSettle();
 
-        expect(find.text('Log out?'), findsOneWidget);
+      expect(find.text('Log out?'), findsOneWidget);
 
-        await tester.tap(find.text('Stay signed in'));
-        await tester.pumpAndSettle();
+      await tester.tap(find.text('Stay signed in'));
+      await tester.pumpAndSettle();
 
-        expect(ProfileStore.instance.current, isNotNull);
-      });
+      expect(ProfileStore.instance.current, isNotNull);
+    },
+  );
 
-  testWidgets('signs out after the person confirms', (tester) async {
-    await _open(tester);
+  testWidgets(
+    'signs out after the person confirms',
+        (tester) async {
+      await _open(tester);
 
-    await tester.tap(find.text('Log out'));
-    await tester.pumpAndSettle();
+      await tester.tap(find.text('Log out'));
+      await tester.pumpAndSettle();
 
-    await tester.tap(find.widgetWithText(FilledButton, 'Log out'));
-    await tester.pumpAndSettle();
+      await tester.tap(
+        find.widgetWithText(FilledButton, 'Log out'),
+      );
+      await tester.pumpAndSettle();
 
-    expect(ProfileStore.instance.current, isNull);
-  });
+      expect(ProfileStore.instance.current, isNull);
+    },
+  );
 }
